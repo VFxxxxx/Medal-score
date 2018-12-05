@@ -106,3 +106,7 @@ form input[type=submit] {
 .form-wrapper {
 	padding-top: 16px;
 }
+
+.padding-head {
+    padding-top: 15px;
+}

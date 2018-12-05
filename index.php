@@ -9,7 +9,7 @@
 <body>
 	<div class='medails-table'>
 	<h1>Олимпийские игры</h1>
-	<h2>Медальный зачёт</h2>
+	<h2 class="padding-head">Медальный зачёт</h2>
 
 	<?
 	require_once("connections/db.php");
