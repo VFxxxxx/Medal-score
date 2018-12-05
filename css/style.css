@@ -32,7 +32,7 @@
 
 .medails-table {
 	background: #d4eafc;
-    width: 300px;
+    width: 333px;
     padding: 20px;
     padding-top: 10px;
 }
@@ -43,7 +43,7 @@
 }
 
 .medails-table td {
-	padding: 2px 9px;
+	padding: 2px 14px;
 }
 
 h1 , h2 {
@@ -68,6 +68,7 @@ h1 {
   width: 35px;
   height: 37px;
   border: 0px;
+  display: none;
 }
 
 form {
@@ -82,7 +83,7 @@ form input , form select{
 }
 
 form input[type=submit] {
- width: 254px;
+ width: 300px;
 }
 
 .success {
@@ -91,4 +92,17 @@ form input[type=submit] {
 
 .wid {
 	width: 200px;
+}
+
+.medails-table {
+    float: left;
+    margin-right: 40px;
+}
+
+.form-control-w {
+	width: 300px;
+}
+
+.form-wrapper {
+	padding-top: 16px;
 }

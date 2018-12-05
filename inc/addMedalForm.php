@@ -3,7 +3,7 @@
    <?
       $sql = 'SELECT * FROM medails';
       $result = $conn->query($sql);?>
-   <select name="medal_type_id" required>
+   <select name="medal_type_id" required class="form-control form-control-w">
       <option value="" disabled selected>Тип медали</option>
       <?
          while ($row = $result->fetch_assoc()) {
@@ -25,7 +25,7 @@
          }*/
          ?>
    <!--</select>-->
-   <select name="sportsmen_id1" required>
+   <select name="sportsmen_id1" required class="form-control form-control-w">
       <option value="" disabled selected>Спортсмен 1</option>
       <?
          $sql = 'SELECT * FROM sportsmens';
@@ -37,7 +37,7 @@
          }
          ?>
    </select>
-   <select name="sportsmen_id2">
+   <select name="sportsmen_id2" class="form-control form-control-w">
       <option value="" disabled selected>Спортсмен 2</option>
       <?
          $sql = 'SELECT * FROM sportsmens';
@@ -49,7 +49,7 @@
          }
          ?>
    </select>
-   <select name="sportsmen_id3">
+   <select name="sportsmen_id3" class="form-control form-control-w">
       <option value="" disabled selected>Спортсмен 3</option>
       <?
          $sql = 'SELECT * FROM sportsmens';
@@ -61,7 +61,7 @@
          }
          ?>
    </select>
-   <select name="sportsmen_id4">
+   <select name="sportsmen_id4" class="form-control form-control-w">
       <option value="" disabled selected>Спортсмен 4</option>
       <?
          $sql = 'SELECT * FROM sportsmens';
@@ -73,7 +73,7 @@
          }
          ?>
    </select>
-   <select name="sportsmen_id5">
+   <select name="sportsmen_id5" class="form-control form-control-w">
       <option value="" disabled selected>Спортсмен 5</option>
       <?
          $sql = 'SELECT * FROM sportsmens';
@@ -85,7 +85,7 @@
          }
          ?>
    </select>
-   <select name="sport_type_id">
+   <select name="sport_type_id" class="form-control form-control-w">
       <option value="" disabled selected>Вид спорта</option>
       <?
          $sql = 'SELECT * FROM sport_type';
@@ -97,6 +97,6 @@
          }
          ?>
    </select>
-   <input type="submit">
+   <input type="submit" class="btn btn-primary">
    <button type="button" name="button" class="addbtncansle"></button>
 </form>

@@ -2,6 +2,7 @@
 <html>
 <head>
 	<title>Медальный зачёт</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<meta charset="UTF-8">
 </head>
@@ -83,7 +84,7 @@
 
 		$result = $conn->query($sql);
 		if ($result->num_rows > 0) {?>
-		<table>
+		<table class="">
 			<tr>
 				<td colspan="2"></td>
 				<td class="first">
@@ -162,6 +163,7 @@
 	</div>
 	</div>
 
+	<div class="form-wrapper">
 	<div class="test"></div>
 
 	<?include_once("inc/addCountryForm.php");?>
@@ -171,6 +173,7 @@
 	<?include_once("inc/addSportForm.php");?>
 
 	<?include_once("inc/addSportsmenForm.php");?>
+	</div>
 
 <?require_once("connections/dbclose.php");?>
 
