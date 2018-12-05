@@ -101,14 +101,14 @@
 				</td>
 			</tr>
 	
-		<?	/*if($_GET['place']=="desc") $place_href = 'href="/?place=asc"'; else $place_href = 'href="/?place=desc"';	*/
+		<?	if($_GET['place']=="desc") $place_href = 'href="/?place=asc"'; else $place_href = 'href="/?place=desc"';
 		  	if($_GET['country']=="desc") $country_href = 'href="/?country=asc"'; else $country_href = 'href="/?country=desc"';
 
 			while($row = $result->fetch_assoc()) {
 				$sum = $row["goldMedalsCount"] + $row["silverMedalsCount"] + $row["bronzeMedalsCount"];
 		        echo '
 		        <tr>
-		        	<td>' . $arrayPlace[$row["countriesId"]] . '</td>
+		        	<td><a class="tan" '.$place_href.' >' . $arrayPlace[$row["countriesId"]] . '</a></td>
 			        <td>
 			        	<a  class="tan" '.
 			        		$country_href.'>' . 
