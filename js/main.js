@@ -168,7 +168,11 @@ $('.addMedalForm ').submit(function (event) {
           sport_type_id: sport_type_id,
         }, 
         success: function(html){
-                $('.test').html("Удачно");
+                console.log(html);
+        },
+        error: function(xhr,status,error){
+          console.log(status);
+          console.log(error);
         }
       });
 });
