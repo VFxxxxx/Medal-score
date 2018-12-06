@@ -46,6 +46,7 @@ $('.addCountryForm ').submit(function (event) {
         }, 
         success: function(html){
                 $('.test').html("Удачно");
+                console.log(html);
         }
       });
 });
@@ -62,6 +63,7 @@ $('.addSportForm').submit(function (event) {
         }, 
         success: function(html){
                 $('.test').html("Удачно");
+                console.log(html);
         }
       });
 });
@@ -79,6 +81,7 @@ $('.delete-sport-type').click(function(){
         }, 
         success: function(html){
                 $('.test').html("Удачно");
+                console.log(html);
         }
       });
 });
@@ -96,6 +99,7 @@ $('.delete-countr').click(function(){
         }, 
         success: function(html){
                 $('.test').html("Удачно");
+                console.log(html);
         }
       });
 });
@@ -116,6 +120,7 @@ $('.addSportsmenForm').submit(function (event) {
         }, 
         success: function(html){
                 $('.test').html("Удачно");
+                console.log(html);
         }
       });
 });
@@ -133,6 +138,7 @@ $('.delete-sporsmen').click(function(){
         }, 
         success: function(html){
                 $('.test').html("Удачно");
+                console.log(html);
         }
       });
 });

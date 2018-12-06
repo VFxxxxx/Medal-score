@@ -1,14 +1,8 @@
 <?
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "olimp_baze";
-
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Не удалось подключиться: " . $conn->connect_error);
-}
+require_once ("idiorm.php");
+$connect = ORM::configure(array(
+    'connection_string' => 'mysql:host=localhost;dbname=olimp_baze',
+    'username' => 'root',
+    'password' => ''
+));
 ?>

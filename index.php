@@ -15,133 +15,125 @@
 	require_once("connections/db.php");
 
 		if($_GET['gold']=="desc")
-			$sort = 'ORDER BY goldMedalsCount DESC';
+			$sort = 'goldMedalsCount DESC';
 		else if($_GET['gold']=="asc")
-			$sort = 'ORDER BY goldMedalsCount ASC';
+			$sort = 'goldMedalsCount ASC';
 		else if($_GET['silver']=="desc")
-			$sort = 'ORDER BY silverMedalsCount DESC';
+			$sort = 'silverMedalsCount DESC';
 		else if($_GET['silver']=="asc")
-			$sort = 'ORDER BY silverMedalsCount ASC';
+			$sort = 'silverMedalsCount ASC';
 		else if($_GET['bronze']=="desc")
-			$sort = 'ORDER BY bronzeMedalsCount DESC';
+			$sort = 'bronzeMedalsCount DESC';
 		else if($_GET['bronze']=="asc")
-			$sort = 'ORDER BY bronzeMedalsCount ASC';
+			$sort = 'bronzeMedalsCount ASC';
 		else if($_GET['all']=="desc")
-			$sort = 'ORDER BY sumMedals DESC';
+			$sort = 'sumMedals DESC, goldMedalsCount DESC , silverMedalsCount DESC , bronzeMedalsCount DESC';
 		else if($_GET['all']=="asc")
-			$sort = 'ORDER BY sumMedals ASC';
+			$sort = 'sumMedals ASC, goldMedalsCount ASC , silverMedalsCount ASC , bronzeMedalsCount ASC';
 		else if($_GET['place']=="desc")
-			$sort = 'ORDER BY goldMedalsCount DESC , silverMedalsCount DESC , bronzeMedalsCount DESC';
+			$sort = 'goldMedalsCount DESC , silverMedalsCount DESC , bronzeMedalsCount DESC';
 		else if($_GET['place']=="asc")
-			$sort = 'ORDER BY goldMedalsCount ASC , silverMedalsCount ASC , bronzeMedalsCount ASC';
+			$sort = 'goldMedalsCount ASC , silverMedalsCount ASC , bronzeMedalsCount ASC';
 		else if($_GET['country']=="desc")
-			$sort = 'ORDER BY country_reduction DESC';
+			$sort = 'country_reduction DESC';
 		else if($_GET['country']=="asc")
-			$sort = 'ORDER BY country_reduction ASC';
+			$sort = 'country_reduction ASC';
 		else
-			$sort = 'ORDER BY goldMedalsCount DESC, silverMedalsCount DESC, bronzeMedalsCount DESC';
+			$sort = 'goldMedalsCount DESC, silverMedalsCount DESC, bronzeMedalsCount DESC';
 
 
 		/**
 		*определяем какое место занимает страна и формируем массив idСтраны - место
 		*/
-		$sqlPlace = 'SELECT 
-					countries.id AS countriesId,
-					countries.country_reduction AS name,
-					COUNT(medal_type_id=1) AS goldMedalsCount,
-					SUM(CASE WHEN medal_type_id=2 THEN 1 ELSE 0 END) AS silverMedalsCount,
-					SUM(CASE WHEN medal_type_id=3 THEN 1 ELSE 0 END) AS bronzeMedalsCount,
-					COUNT(*) AS sumMedals
-				FROM medal_zachet, sportsmens , countries
-				WHERE medal_zachet.sportsmen_id = sportsmens.id 
-					AND sportsmens.county_id = countries.id			
-				GROUP BY countries.country_reduction
-				ORDER BY goldMedalsCount DESC, silverMedalsCount DESC, bronzeMedalsCount DESC
-				;';
-
-		$resultPlace = $conn->query($sqlPlace);
-		$arrayPlace = array();
-		$place = 1;
-		while($row = $resultPlace->fetch_assoc()) {
-			$arrayPlace[$row["countriesId"]] = $place++;
+		$sqlPlace = ORM::for_table('medal_zachet')
+		->select('countries.id', 'countriesId')
+		->select('countries.country_reduction', 'name')
+		->select_expr('SUM(CASE WHEN medal_type_id=1 THEN 1 ELSE 0 END)', 'goldMedalsCount')
+		->select_expr('SUM(CASE WHEN medal_type_id=2 THEN 1 ELSE 0 END)', 'silverMedalsCount')
+		->select_expr('SUM(CASE WHEN medal_type_id=3 THEN 1 ELSE 0 END)', 'bronzeMedalsCount')
+		->join('sportsmens', array('medal_zachet.sportsmen_id', '=', 'sportsmens.id'))
+		->join('countries', array('sportsmens.county_id', '=', 'countries.id'))
+		->group_by('countries.country_reduction')
+		->order_by_expr('goldMedalsCount DESC, silverMedalsCount DESC, bronzeMedalsCount DESC')
+		->find_many();
+		
+		/**
+		*массив ID страны - место в зачёте
+		*/
+		for ($i=1; $i < count($sqlPlace) + 1; $i++) { 
+			$arrayPlace[$sqlPlace[$i - 1]["countriesId"]] = $i;
 		}
 
 
-		$sql = 'SELECT 
-					countries.id AS countriesId,
-					countries.country_reduction AS name,
-					-- SUM(CASE WHEN medal_type_id=1 THEN 1 ELSE 0 END) AS goldMedalsCount,
-					COUNT(medal_type_id=1) AS goldMedalsCount,
-					SUM(CASE WHEN medal_type_id=2 THEN 1 ELSE 0 END) AS silverMedalsCount,
-					SUM(CASE WHEN medal_type_id=3 THEN 1 ELSE 0 END) AS bronzeMedalsCount,
-					COUNT(*) AS sumMedals
-				FROM medal_zachet, sportsmens , countries
-				WHERE medal_zachet.sportsmen_id = sportsmens.id 
-					AND sportsmens.county_id = countries.id			
-				GROUP BY countries.country_reduction
-				'.$sort.'
-				;';
+		$sql = ORM::for_table('medal_zachet')
+		->select('countries.id', 'countriesId')
+		->select('countries.country_reduction', 'name')
+		->select_expr('SUM(CASE WHEN medal_type_id=1 THEN 1 ELSE 0 END)', 'goldMedalsCount')
+		->select_expr('SUM(CASE WHEN medal_type_id=2 THEN 1 ELSE 0 END)', 'silverMedalsCount')
+		->select_expr('SUM(CASE WHEN medal_type_id=3 THEN 1 ELSE 0 END)', 'bronzeMedalsCount')
+		->select_expr('COUNT(*)', 'sumMedals')
+		->join('sportsmens', array('medal_zachet.sportsmen_id', '=', 'sportsmens.id'))
+		->join('countries', array('sportsmens.county_id', '=', 'countries.id'))
+		->group_by('countries.country_reduction')
+		->order_by_expr($sort)
+		->find_many();
 
-		$result = $conn->query($sql);
-		if ($result->num_rows > 0) {?>
-		<table class="">
-			<tr>
-				<td colspan="2"></td>
-				<td class="first">
-					<a <?if($_GET['gold']=="desc") echo 'href="/?gold=asc"'; else echo 'href="/?gold=desc"';?>>1</a>
-				</td>
-				<td class="second">
-					<a <?if($_GET['silver']=="desc") echo 'href="/?silver=asc"'; else echo 'href="/?silver=desc"';?>>2</a>
-				</td>
-				<td class="third">
-					<a <?if($_GET['bronze']=="desc") echo 'href="/?bronze=asc"'; else echo 'href="/?bronze=desc"';?>>3</a>
-				</td>
-				<td class="all">
-					<a <?if($_GET['all']=="desc") echo 'href="/?all=asc"'; else echo 'href="/?all=desc"';?>>Все</a>
-				</td>
-			</tr>
-	
-		<?	if($_GET['place']=="desc") $place_href = 'href="/?place=asc"'; else $place_href = 'href="/?place=desc"';
-		  	if($_GET['country']=="desc") $country_href = 'href="/?country=asc"'; else $country_href = 'href="/?country=desc"';
+		echo '<table class="">
+				<tr>
+					<td colspan="2"></td>
+					<td class="first">
+						<a '.(($_GET['gold']=="desc") ? 'href="/?gold=asc"' : 'href="/?gold=desc"').'>1</a>
+					</td>
+					<td class="second">
+						<a '.(($_GET['silver']=="desc") ? 'href="/?silver=asc"' : 'href="/?silver=desc"').'>2</a>
+					</td>
+					<td class="third">
+						<a '.(($_GET['bronze']=="desc") ? 'href="/?bronze=asc"' : 'href="/?bronze=desc"').'>3</a>
+					</td>
+					<td class="all">
+						<a '.(($_GET['all']=="desc") ? 'href="/?all=asc"' : 'href="/?all=desc"').'>Все</a>
+					</td>
+				</tr>';
 
-			while($row = $result->fetch_assoc()) {
-				$sum = $row["goldMedalsCount"] + $row["silverMedalsCount"] + $row["bronzeMedalsCount"];
-		        echo '
-		        <tr>
-		        	<td><a class="tan" '.$place_href.' >' . $arrayPlace[$row["countriesId"]] . '</a></td>
-			        <td>
-			        	<a  class="tan" '.
-			        		$country_href.'>' . 
-			        		$row["name"] . '
-			        	</a>
-			        </td>
-			        <td>
-			        	<a  class="tan" 
-			        		href="detail_medails.php/?country='.$row["name"].'&medal_type_id=1">' . 
-			        		$row["goldMedalsCount"] . '
-			        	</a>
-			        </td>
-			        <td>
-			        	<a  class="tan" 
-			        		href="detail_medails.php/?country='.$row["name"].'&medal_type_id=2">' . 
-			        		$row["silverMedalsCount"] . '
-			        	</a>
-			        </td>
-			        <td>
-			        	<a  class="tan" 
-			        		href="detail_medails.php/?country='.$row["name"].'&medal_type_id=3">' . 
-			        		$row["bronzeMedalsCount"] . '
-			        	</a>
-			        </td>
-			        <td class="bold">'. $sum .'</td>
-		        </tr>';
-			}
-			echo '<div id="content"></div>';
-		?>
-		</table>
-		<?
+		if($_GET['place']=="desc") $place_href = 'href="/?place=asc"'; else $place_href = 'href="/?place=desc"';
+		if($_GET['country']=="desc") $country_href = 'href="/?country=asc"'; else $country_href = 'href="/?country=desc"';
+
+
+		for ($i=0; $i < count($sql); $i++) { 
+			$sum = $sql[$i]["goldMedalsCount"] + $sql[$i]["silverMedalsCount"] + $sql[$i]["bronzeMedalsCount"];
+		        echo '<tr>
+			        	<td><a class="tan" '.$place_href.' >' . $arrayPlace[$sql[$i]["countriesId"]] . '</a></td>
+				        <td>
+				        	<a  class="tan" '.
+				        		$country_href.'>' . 
+				        		$sql[$i]["name"] . '
+				        	</a>
+				        </td>
+				        <td>
+				        	<a  class="tan" 
+				        		href="detail_medails.php/?country='.$sql[$i]["countriesId"].'&medal_type_id=1">' . 
+				        		$sql[$i]["goldMedalsCount"] . '
+				        	</a>
+				        </td>
+				        <td>
+				        	<a  class="tan" 
+				        		href="detail_medails.php/?country='.$sql[$i]["countriesId"].'&medal_type_id=2">' . 
+				        		$sql[$i]["silverMedalsCount"] . '
+				        	</a>
+				        </td>
+				        <td>
+				        	<a  class="tan" 
+				        		href="detail_medails.php/?country='.$sql[$i]["countriesId"].'&medal_type_id=3">' . 
+				        		$sql[$i]["bronzeMedalsCount"] . '
+				        	</a>
+				        </td>
+				        <td class="bold">'. $sum .'</td>
+			        </tr>';
 		}
-	?>
+
+		echo '<div id="content"></div>
+		</table>';
+?>
 
 	<a class="read-more" href="#">Весь медальный зачёт </a>
 

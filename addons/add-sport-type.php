@@ -10,18 +10,17 @@ $_POST["sport_name"] = filterValue($_POST["sport_name"]);
 /**
 *проверка на наличие такого спорта
 */
-$sql = 'SELECT COUNT(*) AS countSportType 
-		FROM `olimp_baze`.`sport_type` 
-		WHERE `name` = "'.$_POST["sport_name"].'"
-		';
-$result = $conn->query($sql);
-$data = $result->fetch_assoc();
+$sportTypeCount = ORM::for_table('sport_type')
+					->where('name' , $_POST["sport_name"])
+					->count();
 
-if ($data["countSportType"] == 0) {
-	$sql = "INSERT 
-			INTO `sport_type` (`id`, `name`, `command_type`) 
-			VALUES (NULL, '".$_POST["sport_name"]."', NULL);";
-	$result = $conn->query($sql);
+if ($sportTypeCount == 0) {
+	$country = ORM::for_table('sport_type')->create();
+	$country->name = $_POST["sport_name"];
+	$country->save();
+}
+else {
+	echo "Такое уже существует...";
 }
 
 require_once("../connections/dbclose.php");

@@ -1,8 +1,6 @@
 <?
 require_once("../connections/db.php");
-$sql = "DELETE 
-		FROM `sport_type` 
-		WHERE `sport_type`.`id` = ".$_POST["sport_type_id"]." ;";
-$result = $conn->query($sql);
+$sportType = ORM::for_table('sport_type')->find_one($_POST["sport_type_id"]);
+$sportType->delete();
 require_once("../connections/dbclose.php");
 ?>

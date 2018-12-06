@@ -12,20 +12,23 @@ $_POST["sportsmen_county_id"] = filterValue($_POST["sportsmen_county_id"]);
 /**
 *проверка на наличие такого спортсмена
 */
-$sql = 'SELECT COUNT(*) AS countSpoersmens
-		FROM sportsmens 
-		WHERE name = "'.$_POST["sportsmen_name"].'"
-		AND surname = "'.$_POST["sportsmen_surname"].'"
-		AND county_id = "'.$_POST["sportsmen_county_id"].'"
-		';
-$result = $conn->query($sql);
-$data = $result->fetch_assoc();
+$countSportsmen = ORM::for_table('sportsmens')
+				->where(array(
+                 'name' => $_POST["sportsmen_name"],
+                 'surname' => $_POST["sportsmen_surname"],
+                 'county_id' => $_POST["sportsmen_county_id"]
+            	))
+				->count();
 
-if ($data["countSpoersmens"] == 0) {
-$sql = "INSERT 
-		INTO `sportsmens` (`id`, `name`, `surname`, `county_id`) 
-		VALUES (NULL, '".$_POST["sportsmen_name"]."', '".$_POST["sportsmen_surname"]."', '".$_POST["sportsmen_county_id"]."');";
-$result = $conn->query($sql);
+if ($countSportsmen == 0) {
+	$sportsmen = ORM::for_table('sportsmens')->create();
+	$sportsmen->name = $_POST["sportsmen_name"];
+	$sportsmen->surname = $_POST["sportsmen_surname"];
+	$sportsmen->county_id = $_POST["sportsmen_county_id"];
+	$sportsmen->save();
+}
+else {
+	echo "Такое уже существует...";
 }
 
 require_once("../connections/dbclose.php");

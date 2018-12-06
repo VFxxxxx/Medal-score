@@ -5,19 +5,18 @@
    <input type="submit" class="btn btn-primary">
    <table>
       <?
-         $sql = 'SELECT * FROM countries';
-         $result = $conn->query($sql);
-         while ($row = $result->fetch_assoc()) {
-         echo '
-         	<tr>
-         		<td class="wid">'.$row["country_name"].'<td>
-         		<td>
-         			<button value="'.$row["id"].'" class="delete-countr btn btn-danger btn-sm">Удалить</button>
-         		</td>
-         	</tr>
-         ';
+         $sql = ORM::for_table('countries')->find_many();
+         for ($i=0; $i < count($sql); $i++) { 
+            echo '
+            <tr>
+               <td class="wid">'.$sql[$i]["country_name"].'<td>
+               <td>
+                  <button value="'.$sql[$i]["id"].'" class="delete-countr btn btn-danger btn-sm">Удалить</button>
+               </td>
+            </tr>
+            ';
          }
-         ?>
+      ?>
    </table>
    <button type="button" name="button" class="addbtncansle"></button>
 </form>

@@ -5,11 +5,10 @@
    <select name="county_id" required class="form-control form-control-w">
       <option value="" disabled selected>Страна</option>
       <?
-         $sql = 'SELECT * FROM countries';
-         $result = $conn->query($sql);
-         while ($row = $result->fetch_assoc()) {
+         $sql = ORM::for_table('countries')->find_many();
+         for ($i=0; $i < count($sql); $i++) {
          echo '
-             <option value="'.$row["id"].'" >'.$row["country_name"].'</option>
+             <option value="'.$sql[$i]["id"].'" >'.$sql[$i]["country_name"].'</option>
          ';
          }
          ?>
@@ -17,14 +16,13 @@
    <input type="submit" class="btn btn-primary">
    <table >
       <?
-         $sql = 'SELECT * FROM sportsmens';
-         $result = $conn->query($sql);
-         while ($row = $result->fetch_assoc()) {
+         $sql = ORM::for_table('sportsmens')->find_many();
+         for ($i=0; $i < count($sql); $i++) {
          echo '
          	<tr>
-         		<td class="wid">'.$row["name"].'  '.$row["surname"].'<td>
+         		<td class="wid">'.$sql[$i]["name"].'  '.$sql[$i]["surname"].'<td>
          		<td>
-         			<button value="'.$row["id"].'" class="delete-sporsmen btn btn-danger btn-sm">Удалить</button>
+         			<button value="'.$sql[$i]["id"].'" class="delete-sporsmen btn btn-danger btn-sm">Удалить</button>
          		</td>
          	</tr>
          ';

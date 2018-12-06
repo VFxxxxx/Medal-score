@@ -11,19 +11,21 @@ $_POST["country_name"] = filterValue($_POST["country_name"]);
 /**
 *проверка на наличие такой страны
 */
-$sql = 'SELECT COUNT(*) AS countCountries
-		FROM `countries`
-		WHERE countries.country_name = "'.$_POST["country_name"].'" 
-			OR countries.country_reduction = "'.$_POST["country_reduction"].'"
-		';
-$result = $conn->query($sql);
-$data = $result->fetch_assoc();
+$countCountry = ORM::for_table('countries')
+				->where_any_is(array(
+                 array('country_reduction' => $_POST["country_reduction"]),
+                 array('country_name' => $_POST["country_name"])
+            	))
+				->count();
 
-if ($data["countCountries"] == 0) {
-	$sql = "INSERT 
-			INTO `countries` (`id`, `country_reduction`, `country_name`) 
-			VALUES (NULL, '".$_POST["country_reduction"]."', '".$_POST["country_name"]."');";
-	$result = $conn->query($sql);
+if ($countCountry == 0) {
+	$country = ORM::for_table('countries')->create();
+	$country->country_reduction = $_POST["country_reduction"];
+	$country->country_name = $_POST["country_name"];
+	$country->save();
+}
+else {
+	echo "Такое уже существует...";
 }
 
 require_once("../connections/dbclose.php");
