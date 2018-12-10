@@ -1,37 +1,4 @@
 $(document).ready(function () {
-
-$('.addCountry').click(function(){
-    event.preventDefault();
-    $('.addCountryForm').show();
-    $('.addMedalForm').hide();
-    $('.addSportForm').hide();
-    $('.addSportsmenForm').hide();
-});
-$('.addMedal').click(function(){
-    event.preventDefault();
-    $('.addMedalForm').show();
-    $('.addCountryForm').hide();
-    $('.addSportForm').hide();
-    $('.addSportsmenForm').hide();
-});
-$('.addSport').click(function(){
-    event.preventDefault();
-    $('.addSportForm').show();
-    $('.addMedalForm').hide();
-    $('.addCountryForm').hide();
-    $('.addSportsmenForm').hide();
-});
-$('.addSportsmen').click(function(){
-    event.preventDefault();
-    $('.addSportsmenForm').show();
-    $('.addMedalForm').hide();
-    $('.addSportForm').hide();
-    $('.addCountryForm').hide();
-});
-$('.addbtncansle').click(function(){
-  $(this).closest("form").hide();
-});
-
 $('.addCountryForm ').submit(function (event) {
   event.preventDefault();
   var countryname = $(this).children("input[name=country_name]").val();
@@ -39,7 +6,7 @@ $('.addCountryForm ').submit(function (event) {
 
   $.ajax({
         type: "POST",
-        url: "../addons/add-country.php",
+        url: "/country/add",
         data:{
           country_reduction: countryreduction,
           country_name: countryname,
@@ -57,7 +24,7 @@ $('.addSportForm').submit(function (event) {
 
   $.ajax({
         type: "POST",
-        url: "../addons/add-sport-type.php",
+        url: "/sport/add",
         data:{
           sport_name: sportname,
         }, 
@@ -75,7 +42,7 @@ $('.delete-sport-type').click(function(){
 
   $.ajax({
         type: "POST",
-        url: "../addons/delete-sport-type.php",
+        url: "/sport/delete",
         data:{
           sport_type_id: val,
         }, 
@@ -87,13 +54,12 @@ $('.delete-sport-type').click(function(){
 });
 
 $('.delete-countr').click(function(){
-  event.preventDefault();
   $(this).closest("tr").hide();
   var val =  $(this).val();
 
   $.ajax({
         type: "POST",
-        url: "../addons/delete-country.php",
+        url: "/country/delete",
         data:{
           countries_id: val,
         }, 
@@ -112,7 +78,7 @@ $('.addSportsmenForm').submit(function (event) {
 
   $.ajax({
         type: "POST",
-        url: "../addons/add-sporsmen.php",
+        url: "/sportsmen/add",
         data:{
           sportsmen_name: sportsmen_name,
           sportsmen_surname: sportsmen_surname,
@@ -132,7 +98,7 @@ $('.delete-sporsmen').click(function(){
 
   $.ajax({
         type: "POST",
-        url: "../addons/delete-sportsmen.php",
+        url: "/sportsmen/delete",
         data:{
           sportsmen_id: val,
         }, 
@@ -163,7 +129,7 @@ $('.addMedalForm ').submit(function (event) {
 
   $.ajax({
         type: "POST",
-        url: "../addons/add-medail.php",
+        url: "/medal/add",
         data:{
           medal_type_id: medal_type_id,
           sportsmen_id1: sportsmen_id1,

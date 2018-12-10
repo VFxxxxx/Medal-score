@@ -54,10 +54,6 @@ h1 {
 	margin-bottom: -10px;
 }
 
-.addCountryForm, .addMedalForm, .addSportForm, .addSportsmenForm {
-	display: none;
-}
-
 .medails-table {
 	margin-bottom: 40px;
 }
@@ -109,4 +105,8 @@ form input[type=submit] {
 
 .padding-head {
     padding-top: 15px;
+}
+
+.pb {
+	padding-bottom: 20px;
 }

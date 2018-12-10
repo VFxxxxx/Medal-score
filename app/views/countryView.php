@@ -5,7 +5,6 @@
    <input type="submit" class="btn btn-primary">
    <table>
       <?
-         $sql = ORM::for_table('countries')->find_many();
          for ($i=0; $i < count($sql); $i++) { 
             echo '
             <tr>

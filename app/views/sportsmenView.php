@@ -5,7 +5,7 @@
    <select name="county_id" required class="form-control form-control-w">
       <option value="" disabled selected>Страна</option>
       <?
-         $sql = ORM::for_table('countries')->find_many();
+         
          for ($i=0; $i < count($sql); $i++) {
          echo '
              <option value="'.$sql[$i]["id"].'" >'.$sql[$i]["country_name"].'</option>
@@ -16,13 +16,12 @@
    <input type="submit" class="btn btn-primary">
    <table >
       <?
-         $sql = ORM::for_table('sportsmens')->find_many();
-         for ($i=0; $i < count($sql); $i++) {
+         for ($i=0; $i < count($sql2); $i++) {
          echo '
          	<tr>
-         		<td class="wid">'.$sql[$i]["name"].'  '.$sql[$i]["surname"].'<td>
+         		<td class="wid">'.$sql2[$i]["name"].'  '.$sql2[$i]["surname"].'<td>
          		<td>
-         			<button value="'.$sql[$i]["id"].'" class="delete-sporsmen btn btn-danger btn-sm">Удалить</button>
+         			<button value="'.$sql2[$i]["id"].'" class="delete-sporsmen btn btn-danger btn-sm">Удалить</button>
          		</td>
          	</tr>
          ';
