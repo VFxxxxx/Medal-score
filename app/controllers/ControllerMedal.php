@@ -14,7 +14,10 @@ class ControllerMedal extends Controller
 		$data['medails'] = $this->model->getMedails();		
 		$data['sportsmens'] = $this->model->getSportsmens();		
 		$data['sport_type'] = $this->model->getSportType();		
-		$this->view->generate('medalView.php', 'templateView.php', $data);
+		$this->view->generate(
+			'medalView.tpl', 
+			'templateView.tpl', 
+			$data);
 	}
 
 	function actionAdd()

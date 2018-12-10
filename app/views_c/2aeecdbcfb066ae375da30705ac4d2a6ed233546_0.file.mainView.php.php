@@ -1,8 +1,31 @@
-	<div class='medails-table'>
+<?php
+/* Smarty version 3.1.33, created on 2018-12-10 15:44:55
+  from 'C:\OSPanel\domains\olimp\app\views\mainView.php' */
+
+/* @var Smarty_Internal_Template $_smarty_tpl */
+if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
+  'version' => '3.1.33',
+  'unifunc' => 'content_5c0e5fc7895b96_00169408',
+  'has_nocache_code' => false,
+  'file_dependency' => 
+  array (
+    '2aeecdbcfb066ae375da30705ac4d2a6ed233546' => 
+    array (
+      0 => 'C:\\OSPanel\\domains\\olimp\\app\\views\\mainView.php',
+      1 => 1544444491,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+  ),
+),false)) {
+function content_5c0e5fc7895b96_00169408 (Smarty_Internal_Template $_smarty_tpl) {
+?>	<div class='medails-table'>
 	<h1>Олимпийские игры</h1>
 	<h2 class="padding-head">Медальный зачёт</h2>
-<? 
-		echo '<table class="">
+<?php echo '<? 
+		';?>echo '<table class="">
 				<tr>
 					<td colspan="2"></td>
 					<td class="first">
@@ -56,7 +79,7 @@
 
 		echo '<div id="content"></div>
 		</table>';
-?>
+<?php echo '?>';?>
 	<a class="read-more" href="/">Весь медальный зачёт </a>
 
 	<div class="add-list">
@@ -75,4 +98,5 @@
 			</li>
 		</ul>
 	</div>
-	</div>
+	</div><?php }
+}

@@ -23,9 +23,9 @@ class View
 	*/
 	function generate($content_view, $template_view, $data = null)
 	{
-		/*$this->smarty->assign('file',$content_view);
+		$this->smarty->assign('file',$content_view);
 		$this->smarty->assign('data',$data);
-		$this->smarty->display('main.tpl');*/
-		include 'app/views/'.$template_view;
+		$this->smarty->display($template_view);
+		//include 'app/views/'.$template_view;
 	}
 }

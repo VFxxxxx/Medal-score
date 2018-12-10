@@ -41,6 +41,36 @@ class ControllerMain extends Controller
 		$data['place'] = $this->model->getPlace();
 		$data['list'] = $this->model->getData($sort);
 
-		$this->view->generate('mainView.php', 'templateView.php', $data);
+		// sort href
+		$data['gold_href'] = (($_GET['gold']=="desc") ? 
+			'href="/main/index/?gold=asc"' : 
+			'href="/main/index/?gold=desc"');
+
+		$data['silver_href'] = (($_GET['silver']=="desc") ? 
+			'href="/main/index/?silver=asc"' : 
+			'href="/main/index/?silver=desc"');
+
+		$data['bronze_href'] = (($_GET['bronze']=="desc") ? 
+			'href="/main/index/?bronze=asc"' : 
+			'href="/main/index/?bronze=desc"');
+
+		$data['all_href'] = (($_GET['all']=="desc") ? 
+			'href="/main/index/?all=asc"' : 
+			'href="/main/index/?all=desc"');
+
+		$data['place_href'] = ($_GET['place']=="desc") ? 
+		'href="/main/index/?place=asc"' : 
+		'href="/main/index/?place=desc"';
+
+		$data['country_href'] = (($_GET['country']=="desc") ?  
+			'href="/main/index/?country=asc"' : 
+			'href="/main/index/?country=desc"');
+
+		for ($i=0; $i < count($data['list']); $i++) { 
+			$sum[$i] = $data['list'][$i]["goldMedalsCount"] + $data['list'][$i]["silverMedalsCount"] + $data['list'][$i]["bronzeMedalsCount"];
+		}
+		$data['sum'] = $sum;
+
+		$this->view->generate('mainView.tpl', 'templateView.tpl', $data);
 	}
 }

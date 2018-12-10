@@ -12,7 +12,10 @@ class ControllerSport extends Controller
 	function actionCreate()
 	{
 		$data = $this->model->getData();		
-		$this->view->generate('sportView.php', 'templateView.php', $data);
+		$this->view->generate(
+			'sportView.tpl', 
+			'templateView.tpl', 
+			$data);
 	}
 
 	function actionAdd()

@@ -14,8 +14,8 @@ class ControllerSportsmen extends Controller
 		$data['countries'] = $this->model->getCountries();	
 		$data['sportsmens'] = $this->model->getSportsmens();		
 		$this->view->generate(
-			'sportsmenView.php', 
-			'templateView.php', 
+			'sportsmenView.tpl', 
+			'templateView.tpl', 
 			$data);
 	}
 

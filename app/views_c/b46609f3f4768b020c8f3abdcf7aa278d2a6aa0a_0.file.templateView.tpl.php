@@ -1,27 +1,26 @@
 <?php
-/* Smarty version 3.1.33, created on 2018-12-10 16:11:21
-  from 'C:\OSPanel\domains\olimp\app\views\main.tpl' */
+/* Smarty version 3.1.33, created on 2018-12-10 16:44:15
+  from 'C:\OSPanel\domains\olimp\app\views\templateView.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5c0e65f93e97a3_43684001',
+  'unifunc' => 'content_5c0e6daf900f22_73805646',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
-    '681ca97d91fc98e4d89ca6be9f2d2e3df9374b53' => 
+    'b46609f3f4768b020c8f3abdcf7aa278d2a6aa0a' => 
     array (
-      0 => 'C:\\OSPanel\\domains\\olimp\\app\\views\\main.tpl',
-      1 => 1544447475,
+      0 => 'C:\\OSPanel\\domains\\olimp\\app\\views\\templateView.tpl',
+      1 => 1544449452,
       2 => 'file',
     ),
   ),
   'includes' => 
   array (
-    'file:mainView.tpl' => 1,
   ),
 ),false)) {
-function content_5c0e65f93e97a3_43684001 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5c0e6daf900f22_73805646 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html>
 <head>
@@ -32,7 +31,7 @@ function content_5c0e65f93e97a3_43684001 (Smarty_Internal_Template $_smarty_tpl)
 </head>
 <body>
 
-<?php $_smarty_tpl->_subTemplateRender('file:mainView.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+<?php $_smarty_tpl->_subTemplateRender($_smarty_tpl->tpl_vars['file']->value, $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, true);
 ?>
 
 <a class="read-more" href="/">Главная </a></br>
