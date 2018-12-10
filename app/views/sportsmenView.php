@@ -6,9 +6,9 @@
       <option value="" disabled selected>Страна</option>
       <?
          
-         for ($i=0; $i < count($sql); $i++) {
+         for ($i=0; $i < count($data['countries']); $i++) {
          echo '
-             <option value="'.$sql[$i]["id"].'" >'.$sql[$i]["country_name"].'</option>
+             <option value="'.$data['countries'][$i]["id"].'" >'.$data['countries'][$i]["country_name"].'</option>
          ';
          }
          ?>
@@ -16,12 +16,12 @@
    <input type="submit" class="btn btn-primary">
    <table >
       <?
-         for ($i=0; $i < count($sql2); $i++) {
+         for ($i=0; $i < count($data['sportsmens']); $i++) {
          echo '
          	<tr>
-         		<td class="wid">'.$sql2[$i]["name"].'  '.$sql2[$i]["surname"].'<td>
+         		<td class="wid">'.$data['sportsmens'][$i]["name"].'  '.$data['sportsmens'][$i]["surname"].'<td>
          		<td>
-         			<button value="'.$sql2[$i]["id"].'" class="delete-sporsmen btn btn-danger btn-sm">Удалить</button>
+         			<button value="'.$data['sportsmens'][$i]["id"].'" class="delete-sporsmen btn btn-danger btn-sm">Удалить</button>
          		</td>
          	</tr>
          ';

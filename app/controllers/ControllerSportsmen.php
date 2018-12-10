@@ -11,9 +11,12 @@ class ControllerSportsmen extends Controller
 	
 	function actionCreate()
 	{
-		$data = $this->model->getCountries();	
-		$data2 = $this->model->getSportsmens();		
-		$this->view->generate('sportsmenView.php', 'templateView.php', $data, $data2);
+		$data['countries'] = $this->model->getCountries();	
+		$data['sportsmens'] = $this->model->getSportsmens();		
+		$this->view->generate(
+			'sportsmenView.php', 
+			'templateView.php', 
+			$data);
 	}
 
 	function actionAdd()

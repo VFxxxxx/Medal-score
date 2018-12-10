@@ -22,32 +22,32 @@
 		if($_GET['place']=="desc") $place_href = 'href="/main/index/?place=asc"'; else $place_href = 'href="/main/index/?place=desc"';
 		if($_GET['country']=="desc") $country_href = 'href="/main/index/?country=asc"'; else $country_href = 'href="/main/index/?country=desc"';
 
-		for ($i=0; $i < count($sql); $i++) { 
-			$sum = $sql[$i]["goldMedalsCount"] + $sql[$i]["silverMedalsCount"] + $sql[$i]["bronzeMedalsCount"];
+		for ($i=0; $i < count($data['list']); $i++) { 
+			$sum = $data['list'][$i]["goldMedalsCount"] + $data['list'][$i]["silverMedalsCount"] + $data['list'][$i]["bronzeMedalsCount"];
 		        echo '<tr>
-			        	<td><a class="tan" '.$place_href.' >' . $sql2[$sql[$i]["countriesId"]] . '</a></td>
+			        	<td><a class="tan" '.$place_href.' >' . $data['place'][$data['list'][$i]["countriesId"]] . '</a></td>
 				        <td>
 				        	<a  class="tan" '.
 				        		$country_href.'>' . 
-				        		$sql[$i]["name"] . '
+				        		$data['list'][$i]["name"] . '
 				        	</a>
 				        </td>
 				        <td>
 				        	<a  class="tan" 
-				        		href="/country/detail/'.$sql[$i]["countriesId"].'/1">' . 
-				        		$sql[$i]["goldMedalsCount"] . '
+				        		href="/country/detail/'.$data['list'][$i]["countriesId"].'/1">' . 
+				        		$data['list'][$i]["goldMedalsCount"] . '
 				        	</a>
 				        </td>
 				        <td>
 				        	<a  class="tan" 
-				        		href="/country/detail/'.$sql[$i]["countriesId"].'/2">' . 
-				        		$sql[$i]["silverMedalsCount"] . '
+				        		href="/country/detail/'.$data['list'][$i]["countriesId"].'/2">' . 
+				        		$data['list'][$i]["silverMedalsCount"] . '
 				        	</a>
 				        </td>
 				        <td>
 				        	<a  class="tan" 
-				        		href="/country/detail/'.$sql[$i]["countriesId"].'/3">' . 
-				        		$sql[$i]["bronzeMedalsCount"] . '
+				        		href="/country/detail/'.$data['list'][$i]["countriesId"].'/3">' . 
+				        		$data['list'][$i]["bronzeMedalsCount"] . '
 				        	</a>
 				        </td>
 				        <td class="bold">'. $sum .'</td>

@@ -4,12 +4,12 @@
    <input type="submit" class="btn btn-primary">
    <table>
       <? 
-      for ($i=0; $i < count($sql); $i++) {
+      for ($i=0; $i < count($data); $i++) {
          echo '
             <tr>
-               <td class="wid">'.$sql[$i]["name"].'<td>
+               <td class="wid">'.$data[$i]["name"].'<td>
                <td>
-                  <button value="'.$sql[$i]["id"].'" class="delete-sport-type btn btn-danger btn-sm">Удалить</button>
+                  <button value="'.$data[$i]["id"].'" class="delete-sport-type btn btn-danger btn-sm">Удалить</button>
                </td>
             </tr>
          ';

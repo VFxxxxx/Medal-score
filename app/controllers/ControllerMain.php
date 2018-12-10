@@ -38,8 +38,9 @@ class ControllerMain extends Controller
 		else
 			$sort = 'goldMedalsCount DESC, silverMedalsCount DESC, bronzeMedalsCount DESC';
 		
-		$place = $this->model->getPlace();
-		$data = $this->model->getData($sort);		
-		$this->view->generate('mainView.php', 'templateView.php', $data, $place);
+		$data['place'] = $this->model->getPlace();
+		$data['list'] = $this->model->getData($sort);
+
+		$this->view->generate('mainView.php', 'templateView.php', $data);
 	}
 }

@@ -3,9 +3,9 @@
    <select name="medal_type_id" required class="form-control form-control-w">
       <option value="" disabled selected>Тип медали</option>
       <?
-         for ($i=0; $i < count($sql['medails']); $i++) { 
+         for ($i=0; $i < count($data['medails']); $i++) { 
             echo '
-             <option value="'.$sql['medails'][$i]["id"].'" ">'.$sql['medails'][$i]["name"].'</option>
+             <option value="'.$data['medails'][$i]["id"].'" ">'.$data['medails'][$i]["name"].'</option>
             ';
          }
          ?>
@@ -14,9 +14,9 @@
    <select name="sportsmen_id1" required class="form-control form-control-w">
       <option value="" disabled selected>Спортсмен 1</option>
       <?
-         for ($i=0; $i < count($sql['sportsmens']); $i++) {
+         for ($i=0; $i < count($data['sportsmens']); $i++) {
          echo '
-             <option value="'.$sql['sportsmens'][$i]["id"].'" required>'.$sql['sportsmens'][$i]["name"].'  '.$sql['sportsmens'][$i]["surname"].'</option>
+             <option value="'.$data['sportsmens'][$i]["id"].'" required>'.$data['sportsmens'][$i]["name"].'  '.$data['sportsmens'][$i]["surname"].'</option>
          ';
          }
       ?>
@@ -24,9 +24,9 @@
    <select name="sportsmen_id2" class="form-control form-control-w">
       <option value="" disabled selected>Спортсмен 2</option>
       <?
-         for ($i=0; $i < count($sql['sportsmens']); $i++) {
+         for ($i=0; $i < count($data['sportsmens']); $i++) {
          echo '
-             <option value="'.$sql['sportsmens'][$i]["id"].'" required>'.$sql['sportsmens'][$i]["name"].'  '.$sql['sportsmens'][$i]["surname"].'</option>
+             <option value="'.$data['sportsmens'][$i]["id"].'" required>'.$data['sportsmens'][$i]["name"].'  '.$data['sportsmens'][$i]["surname"].'</option>
          ';
          }
       ?>
@@ -34,9 +34,9 @@
    <select name="sportsmen_id3" class="form-control form-control-w">
       <option value="" disabled selected>Спортсмен 3</option>
       <?
-         for ($i=0; $i < count($sql['sportsmens']); $i++) {
+         for ($i=0; $i < count($data['sportsmens']); $i++) {
          echo '
-             <option value="'.$sql['sportsmens'][$i]["id"].'" required>'.$sql['sportsmens'][$i]["name"].'  '.$sql['sportsmens'][$i]["surname"].'</option>
+             <option value="'.$data['sportsmens'][$i]["id"].'" required>'.$data['sportsmens'][$i]["name"].'  '.$data['sportsmens'][$i]["surname"].'</option>
          ';
          }
       ?>
@@ -44,9 +44,9 @@
    <select name="sportsmen_id4" class="form-control form-control-w">
       <option value="" disabled selected>Спортсмен 4</option>
       <?
-         for ($i=0; $i < count($sql['sportsmens']); $i++) {
+         for ($i=0; $i < count($data['sportsmens']); $i++) {
          echo '
-             <option value="'.$sql['sportsmens'][$i]["id"].'" required>'.$sql['sportsmens'][$i]["name"].'  '.$sql['sportsmens'][$i]["surname"].'</option>
+             <option value="'.$data['sportsmens'][$i]["id"].'" required>'.$data['sportsmens'][$i]["name"].'  '.$data['sportsmens'][$i]["surname"].'</option>
          ';
          }
       ?>
@@ -54,9 +54,9 @@
    <select name="sportsmen_id5" class="form-control form-control-w">
       <option value="" disabled selected>Спортсмен 5</option>
       <?
-         for ($i=0; $i < count($sql['sportsmens']); $i++) {
+         for ($i=0; $i < count($data['sportsmens']); $i++) {
          echo '
-             <option value="'.$sql['sportsmens'][$i]["id"].'" required>'.$sql['sportsmens'][$i]["name"].'  '.$sql['sportsmens'][$i]["surname"].'</option>
+             <option value="'.$data['sportsmens'][$i]["id"].'" required>'.$data['sportsmens'][$i]["name"].'  '.$data['sportsmens'][$i]["surname"].'</option>
          ';
          }
       ?>
@@ -64,9 +64,9 @@
    <select name="sport_type_id" class="form-control form-control-w">
       <option value="" disabled selected>Вид спорта</option>
       <? 
-         for ($i=0; $i < count($sql['sport_type']); $i++) {
+         for ($i=0; $i < count($data['sport_type']); $i++) {
          echo '
-             <option value="'.$sql['sport_type'][$i]["id"].'" >'.$sql['sport_type'][$i]["name"].'</option>
+             <option value="'.$data['sport_type'][$i]["id"].'" >'.$data['sport_type'][$i]["name"].'</option>
          ';
          }
       ?>

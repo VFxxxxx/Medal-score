@@ -12,7 +12,11 @@ class ControllerCountry extends Controller
 	function actionCreate()
 	{
 		$data = $this->model->getData();		
-		$this->view->generate('countryView.php', 'templateView.php', $data);
+		$this->view->generate(
+			'countryView.php', 
+			'templateView.php', 
+			$data
+		);
 	}
 
 	function actionAdd()
@@ -32,8 +36,12 @@ class ControllerCountry extends Controller
 
 	function actionDetail()
 	{
-		$data = $this->model->getCountryName();	
-		$sportsmens = $this->model->getSportsmens();		
-		$this->view->generate('detailView.php', 'templateView.php', $data, $sportsmens);
+		$data['country'] = $this->model->getCountryName();	
+		$data['sportsmens'] = $this->model->getSportsmens();	
+		$this->view->generate(
+			'detailView.php', 
+			'templateView.php', 
+			$data
+		);
 	}
 }

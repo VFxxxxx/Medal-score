@@ -9,11 +9,13 @@
 </head>
 <body>
 	<?
+	echo '<h1 class="pb">' .$data['country']['countryName'] . ', ' . $medal_type . ' медали</h1>';
 
-	echo '<h1 class="pb">' .$sql['countryName'] . ', ' . $medal_type . ' медали</h1>';
-
-	for ($i=0; $i < count($sql2); $i++) { 
-		echo ($i + 1) . ". " . $sql2[$i]['name'] . ' ' . $sql2[$i]['surname'] . ' - ' . $sql2[$i]['sport'] . '</br>';
+	for ($i=0; $i < count($data['sportsmens']); $i++) { 
+		echo ($i + 1) . ". " . 
+			 $data['sportsmens'][$i]['name'] . ' ' . 
+			 $data['sportsmens'][$i]['surname'] . ' - ' . 
+			 $data['sportsmens'][$i]['sport'] . '</br>';
 	}
 
 	?>
