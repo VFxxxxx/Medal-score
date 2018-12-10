@@ -17,11 +17,15 @@ class ControllerSport extends Controller
 
 	function actionAdd()
 	{
-		 $this->model->addSport($_POST["sport_name"]);
+		 $this->model->addSport(
+		 	$this->filterValue($_POST["sport_name"])
+		 );
 	}
 
 	function actionDelete()
 	{
-		$this->model->deleteSport($_POST["sport_type_id"]);
+		$this->model->deleteSport(
+			$this->filterValue($_POST["sport_type_id"])
+		);
 	}
 }

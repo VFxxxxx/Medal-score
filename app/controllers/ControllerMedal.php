@@ -20,13 +20,13 @@ class ControllerMedal extends Controller
 	function actionAdd()
 	{
 		$this->model->addMedail(
-			$_POST["medal_type_id"],
-			$_POST["sport_type_id"],
-			$_POST["sportsmen_id1"],
-			$_POST["sportsmen_id2"],
-			$_POST["sportsmen_id3"],
-			$_POST["sportsmen_id4"],
-			$_POST["sportsmen_id5"]
+			$this->filterValue($_POST["medal_type_id"]),
+			$this->filterValue($_POST["sport_type_id"]),
+			$this->filterValue($_POST["sportsmen_id1"]),
+			$this->filterValue($_POST["sportsmen_id2"]),
+			$this->filterValue($_POST["sportsmen_id3"]),
+			$this->filterValue($_POST["sportsmen_id4"]),
+			$this->filterValue($_POST["sportsmen_id5"])
 		);
 	}
 }

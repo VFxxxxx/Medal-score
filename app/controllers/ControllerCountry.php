@@ -17,12 +17,17 @@ class ControllerCountry extends Controller
 
 	function actionAdd()
 	{
-		$this->model->addCountry($_POST["country_reduction"],$_POST["country_name"]);
+		$this->model->addCountry(
+			$this->filterValue($_POST["country_reduction"]),
+			$this->filterValue($_POST["country_name"])
+		);
 	}
 
 	function actionDelete()
 	{
-		$this->model->deleteCountry($_POST["countries_id"]);
+		$this->model->deleteCountry(
+			$this->filterValue($_POST["countries_id"])
+		);
 	}
 
 	function actionDetail()

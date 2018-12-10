@@ -18,11 +18,17 @@ class ControllerSportsmen extends Controller
 
 	function actionAdd()
 	{
-		 $this->model->addSportsmens($_POST["sportsmen_name"],$_POST["sportsmen_surname"],$_POST["sportsmen_county_id"]);
+		 $this->model->addSportsmens(
+		 	$this->filterValue($_POST["sportsmen_name"]),
+		 	$this->filterValue($_POST["sportsmen_surname"]),
+		 	$this->filterValue($_POST["sportsmen_county_id"])
+		 );
 	}
 
 	function actionDelete()
 	{
-		$this->model->deleteSportsmens($_POST["sportsmen_id"]);
+		$this->model->deleteSportsmens(
+			$this->filterValue($_POST["sportsmen_id"])
+		);
 	}
 }
